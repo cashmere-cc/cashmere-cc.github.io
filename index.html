@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cashmere Cricket Club</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --cashmere-maroon: #6b0f2a;
+      --cashmere-maroon-dark: #3c0617;
+      --cashmere-light: #f9fafb;
+      --cashmere-muted: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #8b1234 0, #25020b 45%, #050308 100%);
+      color: var(--cashmere-light);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(37, 2, 11, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(249, 250, 251, 0.1);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-wrap img {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+    }
+
+    .logo-wrap span {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links a {
+      opacity: 0.8;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .btn-nav {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 250, 251, 0.7);
+      background: transparent;
+    }
+
+    /* LAYOUT */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    section {
+      padding: 3rem 0 0;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 1.3rem;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 2.5rem;
+      padding-top: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 250, 251, 0.3);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .hero-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4vw, 3.1rem);
+      line-height: 1.05;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero h1 span {
+      color: var(--cashmere-muted);
+    }
+
+    .hero p {
+      font-size: 0.96rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .btn-primary, .btn-outline {
+      border-radius: 999px;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 600;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+    }
+
+    .btn-primary {
+      background: var(--cashmere-light);
+      color: var(--cashmere-maroon-dark);
+    }
+
+    .btn-outline {
+      border-color: rgba(249, 250, 251, 0.7);
+      background: transparent;
+      color: var(--cashmere-light);
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .hero-card {
+      border-radius: 1.1rem;
+      padding: 1.2rem 1.3rem;
+      border: 1px solid rgba(249, 250, 251, 0.15);
+      background: rgba(37, 2, 11, 0.96);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-card img {
+      width: 100%;
+      border-radius: 0.9rem;
+      margin-top: 0.8rem;
+      border: 1px solid rgba(249, 250, 251, 0.18);
+    }
+
+    .hero-card h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.85;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-card p {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    /* SQUAD / GALLERY */
+    .squad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .photo-card {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(249, 250, 251, 0.18);
+      background: rgba(37, 2, 11, 0.9);
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .photo-caption {
+      padding: 0.7rem 0.9rem;
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* CONTACT / SOCIALS */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.3fr);
+      gap: 1.5rem;
+      margin-top: 0.7rem;
+    }
+
+    form {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.8;
+    }
+
+    input, textarea {
+      width: 100%;
+      margin-top: 0.2rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 0.6rem;
+      border: 1px solid rgba(249, 250, 251, 0.25);
+      background: rgba(37, 2, 11, 0.96);
+      color: var(--cashmere-light);
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem 2.6rem;
+      font-size: 0.8rem;
+      opacity: 0.8;
+      border-top: 1px solid rgba(249, 250, 251, 0.18);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      opacity: 0.9;
+    }
+
+    .social-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      main {
+        padding-top: 1.6rem;
+      }
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header>
+    <div class="nav-inner">
+      <div class="logo-wrap">
+        <img src="logo.png" alt="Cashmere Group logo" />
+        <span>Cashmere Cricket Club</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#squad">Squad</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn-nav">Join the club</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div>
+        <div class="hero-tag">
+          <div class="hero-dot"></div>
+          <span>Grassroots cricket. Elite vibes.</span>
+        </div>
+        <h1>
+          Cashmere Cricket Club<br />
+          <span>Cricket, community & chaos.</span>
+        </h1>
+        <p>
+          Player-led cricket club based in and around London. Competitive fixtures, European tours,
+          bold maroon kits and socials that last longer than the season.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-primary">Join the squad</a>
+          <a href="https://www.instagram.com/cashmere.group" target="_blank" class="btn-outline">
+            Follow @cashmere.group
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span>🏏 Weekend fixtures & tours</span>
+          <span>📍 London & beyond</span>
+          <span>📲 Instagram & TikTok: @cashmere.group</span>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h3>2025 Season</h3>
+        <p>Building a squad that competes hard, has fun and grows every year – on and off the pitch.</p>
+        <img src="squad1.jpg" alt="Cashmere CC squad photo" />
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2>About Cashmere</h2>
+      <p class="section-sub">
+        Cashmere Group started as mates who refused to stop playing together. Now it’s a club with a
+        growing squad, custom kits and an annual tour.
+      </p>
+      <p class="section-sub">
+        We balance serious cricket with good energy. We want players who care about the game, the team
+        and the vibe in the bar after.
+      </p>
+    </section>
+
+    <!-- SQUAD / GALLERY -->
+    <section id="squad">
+      <h2>Squad & Gallery</h2>
+      <p class="section-sub">
+        A snapshot of the Cashmere family. More photos, stats and fixtures coming soon.
+      </p>
+
+      <div class="squad-grid">
+        <div class="photo-card">
+          <img src="squad1.jpg" alt="Cashmere CC squad with flag" />
+          <div class="photo-caption">
+            Tour energy and flag out. Cashmere CC in full maroon.
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="squad2.jpg" alt="Cashmere CC full squad outside pavilion" />
+          <div class="photo-caption">
+            Full squad outside the pavilion – pink and purple kits on show.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Join Cashmere CC</h2>
+      <p class="section-sub">
+        Interested in playing, organising a friendly or talking sponsorship? Drop us a message and we’ll get back to you.
+      </p>
+
+      <div class="contact-grid">
+        <form>
+          <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" />
+          </div>
+          <div>
+            <label for="interest">What are you interested in?</label>
+            <input id="interest" type="text" placeholder="Playing / Friendly / Sponsorship..." />
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell us a bit about you or your club/brand."></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Send message</button>
+        </form>
+
+        <div>
+          <p class="section-sub">
+            You can also reach us on socials:
+          </p>
+          <ul class="section-sub" style="list-style: none; padding-left: 0;">
+            <li>📸 Instagram: <a href="https://www.instagram.com/cashmere.group" target="_blank">@cashmere.group</a></li>
+            <li>🎵 TikTok: <a href="https://www.tiktok.com/@cashmere.group" target="_blank">@cashmere.group</a></li>
+          </ul>
+          <p class="section-sub">
+            We’ll usually invite new players down to nets or a friendly first, and we’re always open to
+            creative ideas with brands.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© Cashmere Cricket Club. Est. 2022</span>
+    <div class="social-links">
+      <a href="https://www.instagram.com/cashmere.group" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@cashmere.group" target="_blank">TikTok</a>
+    </div>
+  </footer>
+</body>
+</html>
